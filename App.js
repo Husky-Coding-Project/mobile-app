@@ -1,14 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet
+} from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+// 1. Import 
+import {QRCode, Canvas} from 'easyqrcode-react-native';
+
+class App extends  Component{
+    
+    // 3. Generate QRCode
+    generateQRCode = (canvas) => {
+        if (canvas !== null){
+            // QRCode options
+            var options = {
+                text: "hello world",
+        	};
+        	// Create QRCode Object
+        	var qrCode = new QRCode(canvas, options);
+          return qrCode;
+        }
+      }
+    
+   render() { 
+      return (
+          <View style={styles.container}>
+            <Text>Below should be QR code</Text>
+            {/* 2. QRCode Canvas  */}
+            <Canvas ref={this.generateQRCode}/>
+          </View>
+      );
+  }
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -18,3 +42,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
