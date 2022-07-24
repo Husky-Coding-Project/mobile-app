@@ -6,32 +6,20 @@ import {
 } from 'react-native';
 
 // 1. Import 
-import {QRCode, Canvas} from 'easyqrcode-react-native';
+import QRCode from 'react-native-qrcode-svg';
 
-class App extends  Component{
-    
-    // 3. Generate QRCode
-    generateQRCode = (canvas) => {
-        if (canvas !== null){
-            // QRCode options
-            var options = {
-                text: "hello world",
-        	};
-        	// Create QRCode Object
-        	var qrCode = new QRCode(canvas, options);
-          return qrCode;
-        }
-      }
-    
-   render() { 
-      return (
-          <View style={styles.container}>
-            <Text>Below should be QR code</Text>
-            {/* 2. QRCode Canvas  */}
-            <Canvas ref={this.generateQRCode}/>
-          </View>
-      );
-  }
+class App extends Component {
+  // Simple usage, defaults for all but the value
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>QR code should be below</Text>
+        <QRCode
+        value="https://en.wikipedia.org/wiki/Cat"
+        />
+      </View>
+    );
+  };
 };
 
 const styles = StyleSheet.create({
